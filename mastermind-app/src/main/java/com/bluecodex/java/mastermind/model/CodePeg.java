@@ -4,7 +4,7 @@ public enum CodePeg {
     BLUE,
     GREEN,
     YELLOW,
-    WHITE;
+    ORANGE;
 
     public static CodePeg getRandom() {
         return values()[(int) (Math.random() * values().length)];

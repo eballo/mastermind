@@ -3,6 +3,7 @@ package com.bluecodex.java.mastermind.manager;
 import com.bluecodex.java.mastermind.model.CodePeg;
 import com.bluecodex.java.mastermind.model.Game;
 import com.bluecodex.java.mastermind.model.GameConfig;
+import com.bluecodex.java.mastermind.model.GamePlay;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
@@ -26,7 +27,7 @@ public class GameManager {
 
     public Game gamePlay(String gameId, List<CodePeg> codePegs){
         Game game = games.get(gameId);
-        game.compareCodes(codePegs);
+        game.play(codePegs);
         return game;
     }
 

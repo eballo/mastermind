@@ -5,7 +5,7 @@ import java.util.List;
 public interface IGame {
 
     public List<CodePeg> generateCode();
-    public void compareCodes(List<CodePeg> codePegs);
+    public Boolean compareCodes(List<CodePeg> codePegs);
 
 
 }

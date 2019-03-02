@@ -79,6 +79,22 @@ public class Game implements IGame {
 
     public GamePlay getKeyPegs(List<CodePeg> codePegs){
         List<KeyPeg> keyPegs = new ArrayList<>();
+
+        for (int i=0; i< codePegs.size(); i++){
+            KeyPeg keyPeg = null;
+            for(int j=0; j< privateCode.size(); j++){
+                if(codePegs.get(i).equals(privateCode.get(j))){
+                    if(i == j){
+                        keyPeg = KeyPeg.BLACK;
+                        break;
+                    }else {
+                        keyPeg = KeyPeg.WHITE;
+                    }
+                }
+            }
+            keyPegs.add(keyPeg);
+        }
+
         GamePlay gamePlay = new GamePlay(codePegs,keyPegs);
         return gamePlay;
     }

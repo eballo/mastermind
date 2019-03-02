@@ -1,29 +1,50 @@
 package com.bluecodex.java.mastermind.manager;
 
+import com.bluecodex.java.mastermind.model.CodePeg;
 import com.bluecodex.java.mastermind.model.Game;
+import com.bluecodex.java.mastermind.model.GameConfig;
 import org.springframework.stereotype.Component;
+
+import java.util.HashMap;
+import java.util.List;
 
 @Component
 public class GameManager {
 
-    private Game game;
+    private HashMap<String, Game> games;
 
-
-    public String gameCreate(){
-        game = new Game();
-        return  "bla";
+    public GameManager() {
+        this.games = new HashMap<String, Game>();
     }
 
-    public void gamePlay(){
-
+    public Game gameCreate(GameConfig gameConfig){
+        Game game = new Game(gameConfig);
+        String id = game.getId();
+        games.put(id, game);
+        return game;
     }
 
-    public void gameEnd(){
-
+    public Game gamePlay(String gameId, List<CodePeg> codePegs){
+        Game game = games.get(gameId);
+        game.compareCodes(codePegs);
+        return game;
     }
 
-    public String gameCreateCodeMaker(Long gameId) {
+    public void gameEnd(String gameId){
+        games.remove(gameId);
+    }
+
+    public Game gameCreateCodeMaker(String gameId) {
+        Game game = games.get(gameId);
         game.generateCode();
-        return "bla";
+        return game;
+    }
+
+    public Game gameStatus(String gameId){
+        return games.get(gameId);
+    }
+
+    public HashMap<String, Game> getGames() {
+        return games;
     }
 }

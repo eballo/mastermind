@@ -1,24 +1,29 @@
 package com.bluecodex.java.mastermind.manager;
 
-import com.bluecodex.java.mastermind.model.CodePeg;
+import com.bluecodex.java.mastermind.model.Game;
+import org.springframework.stereotype.Component;
 
+@Component
 public class GameManager {
 
-    // Default values for the game
-    private Integer guesses = 10;
-    private Boolean duplicates = true;
-    private Integer codeLenght = 4;
-    private Integer guessNum = 0;
-    private CodePeg [] privateCode;
+    private Game game;
 
-    public GameManager() {
+
+    public String gameCreate(){
+        game = new Game();
+        return  "bla";
     }
 
-    public GameManager(Integer guesses, Boolean duplicates, Integer codeLenght) {
-        this.guesses = guesses;
-        this.duplicates = duplicates;
-        this.codeLenght = codeLenght;
+    public void gamePlay(){
+
     }
 
+    public void gameEnd(){
 
+    }
+
+    public String gameCreateCodeMaker(Long gameId) {
+        game.generateCode();
+        return "bla";
+    }
 }

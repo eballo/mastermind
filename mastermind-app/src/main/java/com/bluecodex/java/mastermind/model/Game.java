@@ -57,11 +57,12 @@ public class Game implements IGame {
         }else{
 
             Boolean result = compareCodes(codePegs);
+            GamePlay gamePlay = getKeyPegs(codePegs);
+            this.history.put(getGuessNum(), gamePlay);
+
             if(result){
                 gameWin();
             }else{
-                GamePlay gamePlay = getKeyPegs(codePegs);
-                this.history.put(getGuessNum(), gamePlay);
                 this.incrementGuess();
             }
         }

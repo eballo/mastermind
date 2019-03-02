@@ -1,9 +1,6 @@
 package com.bluecodex.java.mastermind.manager;
 
-import com.bluecodex.java.mastermind.model.CodePeg;
-import com.bluecodex.java.mastermind.model.Game;
-import com.bluecodex.java.mastermind.model.GameConfig;
-import com.bluecodex.java.mastermind.model.GamePlay;
+import com.bluecodex.java.mastermind.model.*;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
@@ -45,7 +42,11 @@ public class GameManager {
         return games.get(gameId);
     }
 
-    public HashMap<String, Game> getGames() {
-        return games;
+    public ServerStatus getServerStatus() {
+        ServerStatus serverStatus = new ServerStatus();
+        serverStatus.setActiveGames(null);
+        serverStatus.setFinishedGames(null);
+        serverStatus.setTotalGames(games.size());
+        return serverStatus;
     }
 }

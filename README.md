@@ -39,7 +39,7 @@ mvn clean install spring-boot:run
 ```
 http://localhost:8080/swagger-ui.html#/
 ```
-![sample](screenshot.png)
+![sample](Screenshot.png)
 
 ## How to play
 To play the mastermind API game:

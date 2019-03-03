@@ -1,5 +1,5 @@
 # Mastermind API
-![mastermind](https://upload.wikimedia.org/wikipedia/commons/2/2d/Mastermind.jpg)
+![mastermind](Mastermind.jpg)
 
 ## Introduction
 

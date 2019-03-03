@@ -17,4 +17,5 @@ public class ServerController {
     public ServerStatus serverStatus(){
         return gameManager.getServerStatus();
     }
+
 }

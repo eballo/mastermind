@@ -8,6 +8,7 @@ import com.bluecodex.java.mastermind.model.history.GamePlay;
 import com.bluecodex.java.mastermind.model.server.ServerStatus;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -33,8 +34,12 @@ public class GameManager {
         return game;
     }
 
-    public Game gameEnd(String gameId){
-        return games.remove(gameId);
+    public Game gameStop(String gameId){
+        Game game = getGameById(gameId);
+        if(game!=null){
+            game.gameOver();
+        }
+        return game;
     }
 
     public Game gameCreateCodeMaker(String gameId) {
@@ -54,10 +59,14 @@ public class GameManager {
     }
 
     public ServerStatus getServerStatus() {
+        List<Game> gameList = new ArrayList<Game>(games.values());
+
         ServerStatus serverStatus = new ServerStatus();
-        serverStatus.setActiveGames(null);
-        serverStatus.setFinishedGames(null);
-        serverStatus.setTotalGames(games.size());
+        serverStatus.setActiveGames(gameList.stream().filter(l -> l.getFinished().equals(Boolean.FALSE)).count());
+        serverStatus.setFinishedGames(gameList.stream().filter(l -> l.getFinished().equals(Boolean.TRUE)).count());
+        serverStatus.setTotalGames(new Long(games.size()));
+        serverStatus.setGameList(gameList);
+
         return serverStatus;
     }
 

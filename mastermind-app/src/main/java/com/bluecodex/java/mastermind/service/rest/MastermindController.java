@@ -48,10 +48,10 @@ class MastermindController {
         return gameManager.gamePlay(gameId, codePegs);
     }
 
-    @RequestMapping(value = "/{gameId}/codebreaker/play", method = RequestMethod.POST)
+    @RequestMapping(value = "/{gameId}/stop", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
-    public Game gameEnd(@PathVariable("gameId") String gameId){
-        return gameManager.gameEnd(gameId);
+    public Game gameStop(@PathVariable("gameId") String gameId){
+        return gameManager.gameStop(gameId);
     }
 
     @RequestMapping(value = "/{gameId}/status", method = RequestMethod.GET)

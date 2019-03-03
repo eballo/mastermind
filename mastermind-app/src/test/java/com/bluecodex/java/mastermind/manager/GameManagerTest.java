@@ -188,7 +188,7 @@ public class GameManagerTest {
         codebreaker2.add(CodePeg.GREEN);
 
         game = gameManager.gamePlay(gameId,codebreaker2);
-        Assert.assertEquals(game.getGuessNum().intValue(),1);
+        Assert.assertEquals(game.getGuessNum().intValue(),2);
         Assert.assertEquals(game.getHistory().size(),2);
         Assert.assertEquals(game.getFinished(), Boolean.TRUE);
         Assert.assertEquals(game.getWin(), Boolean.TRUE);
@@ -296,7 +296,7 @@ public class GameManagerTest {
     }
 
     @Test
-    public void getHistory(){
+    public void gameHistory(){
         Game game = null;
         Integer guesses = 2;
         Boolean duplicate = Boolean.TRUE;
@@ -345,7 +345,7 @@ public class GameManagerTest {
     }
 
     @Test
-    public void getStatus(){
+    public void gameStatus(){
         Game game = null;
         Integer guesses = 2;
         Boolean duplicate = Boolean.TRUE;
@@ -368,6 +368,35 @@ public class GameManagerTest {
         Boolean isActive = gameManager.gameStatus(gameId);
 
         Assert.assertEquals(isActive,true);
+
+    }
+
+    @Test
+    public void gameStop(){
+        Game game = null;
+        Integer guesses = 2;
+        Boolean duplicate = Boolean.TRUE;
+        Integer codeLength = 4;
+        GameConfig config = new GameConfig(guesses, duplicate, codeLength);
+
+        GameManager gameManager = new GameManager();
+        game = gameManager.gameCreate(config);
+        String gameId = game.getId();
+
+        List<CodePeg> codeMaker = new ArrayList<>();
+        codeMaker.add(CodePeg.BLUE);
+        codeMaker.add(CodePeg.BLUE);
+        codeMaker.add(CodePeg.YELLOW);
+        codeMaker.add(CodePeg.GREEN);
+
+        game = gameManager.gameCreateCodeMaker(gameId, codeMaker);
+        Assert.assertNotNull(game.getPrivateCode());
+
+        game = gameManager.gameStop(gameId);
+        Assert.assertEquals(game.getGuessNum().intValue(),0);
+        Assert.assertEquals(game.getHistory().size(),0);
+        Assert.assertEquals(game.getFinished(), Boolean.TRUE);
+        Assert.assertEquals(game.getWin(), Boolean.FALSE);
 
     }
 }

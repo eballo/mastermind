@@ -151,7 +151,7 @@ public class Game implements IGame {
         this.win = Boolean.TRUE;
     }
 
-    private void gameOver() {
+    public void gameOver() {
         this.finished = Boolean.TRUE;
         this.win = Boolean.FALSE;
     }
@@ -162,5 +162,18 @@ public class Game implements IGame {
 
     public Boolean getWin() {
         return win;
+    }
+
+    @Override
+    public String toString() {
+        return "Game{" +
+                "id='" + id + '\'' +
+                ", finished=" + finished +
+                ", win=" + win +
+                ", gameConfiguration=" + gameConfiguration +
+                ", guessNum=" + guessNum +
+                ", privateCode=" + privateCode +
+                ", history=" + history +
+                '}';
     }
 }

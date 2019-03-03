@@ -1,4 +1,4 @@
-package com.bluecodex.java.mastermind.model;
+package com.bluecodex.java.mastermind.model.config;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 

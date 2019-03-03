@@ -1,6 +1,9 @@
 package com.bluecodex.java.mastermind.manager;
 
 import com.bluecodex.java.mastermind.model.*;
+import com.bluecodex.java.mastermind.model.code.CodePeg;
+import com.bluecodex.java.mastermind.model.config.GameConfig;
+import com.bluecodex.java.mastermind.model.server.ServerStatus;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;

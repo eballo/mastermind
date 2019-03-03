@@ -1,10 +1,9 @@
 package com.bluecodex.java.mastermind.service.rest;
 
 import com.bluecodex.java.mastermind.manager.GameManager;
-import com.bluecodex.java.mastermind.model.CodePeg;
+import com.bluecodex.java.mastermind.model.code.CodePeg;
 import com.bluecodex.java.mastermind.model.Game;
-import com.bluecodex.java.mastermind.model.GameConfig;
-import com.bluecodex.java.mastermind.model.GamePlay;
+import com.bluecodex.java.mastermind.model.config.GameConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

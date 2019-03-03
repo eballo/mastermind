@@ -1,5 +1,7 @@
-package com.bluecodex.java.mastermind.model;
+package com.bluecodex.java.mastermind.model.history;
 
+import com.bluecodex.java.mastermind.model.code.CodePeg;
+import com.bluecodex.java.mastermind.model.code.KeyPeg;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.util.List;

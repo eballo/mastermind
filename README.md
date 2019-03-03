@@ -230,3 +230,7 @@ Server sample response
   ]
 }
 ```
+
+## TODO :
+- Create a client
+- Integration Tests

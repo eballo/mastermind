@@ -4,10 +4,12 @@ import com.bluecodex.java.mastermind.manager.GameManager;
 import com.bluecodex.java.mastermind.model.code.CodePeg;
 import com.bluecodex.java.mastermind.model.Game;
 import com.bluecodex.java.mastermind.model.config.GameConfig;
+import com.bluecodex.java.mastermind.model.history.GamePlay;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 
 @RestController
@@ -54,8 +56,14 @@ class MastermindController {
 
     @RequestMapping(value = "/{gameId}/status", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
-    public Game gameStatus(@PathVariable("gameId") String gameId) {
-        return gameManager.gameStatus(gameId);
+    public String gameStatus(@PathVariable("gameId") String gameId) {
+        return "Game Active: " + gameManager.gameStatus(gameId);
+    }
+
+    @RequestMapping(value = "/{gameId}/history", method = RequestMethod.GET)
+    @ResponseStatus(HttpStatus.OK)
+    public HashMap<Integer, GamePlay> gameHistory(@PathVariable("gameId") String gameId) {
+        return gameManager.gameHistory(gameId);
     }
 
 }

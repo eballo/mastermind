@@ -1,5 +1,7 @@
 package com.bluecodex.java.mastermind.model;
 
+import com.bluecodex.java.mastermind.exceptions.GameNotFoundException;
+import com.bluecodex.java.mastermind.exceptions.InvalidDataException;
 import com.bluecodex.java.mastermind.model.code.CodePeg;
 import com.bluecodex.java.mastermind.model.code.KeyPeg;
 import com.bluecodex.java.mastermind.model.config.GameConfig;
@@ -56,30 +58,21 @@ public class Game implements IGame {
     }
 
     public void play(List<CodePeg> codePegs) {
-        if(guessNum.equals(gameConfiguration.getGuesses())){
-            gameOver();
-        }else{
 
-            Boolean result = compareCodes(codePegs);
-            GamePlay gamePlay = getKeyPegs(codePegs);
-            this.history.put(getGuessNum(), gamePlay);
+        validateCodeBreaker(codePegs);
 
-            if(result){
-                gameWin();
-            }else{
-                this.incrementGuess();
+        GamePlay gamePlay = getKeyPegs(codePegs);
+        this.history.put(getGuessNum(), gamePlay);
+        this.incrementGuess();
+
+        if(compareCodes(codePegs)){
+            gameWin();
+        }else {
+            if (guessNum.equals(gameConfiguration.getGuesses())) {
+                gameOver();
             }
         }
-    }
 
-    private void gameWin() {
-        this.finished = Boolean.TRUE;
-        this.win = Boolean.TRUE;
-    }
-
-    private void gameOver() {
-        this.finished = Boolean.TRUE;
-        this.win = Boolean.FALSE;
     }
 
     public GamePlay getKeyPegs(List<CodePeg> codePegs){
@@ -117,6 +110,9 @@ public class Game implements IGame {
     }
 
     public void setPrivateCode(List<CodePeg> privateCode) {
+        if(privateCode.size()!= gameConfiguration.getCodeLength()) {
+            throw new InvalidDataException("Invalid length for the codemaker must be "+gameConfiguration.getCodeLength());
+        }
         this.privateCode = privateCode;
     }
 
@@ -134,5 +130,37 @@ public class Game implements IGame {
 
     public void setHistory(HashMap<Integer, GamePlay> history) {
         this.history = history;
+    }
+
+    private void validateCodeBreaker(List<CodePeg> codePegs) {
+        if(this.finished){
+            throw new GameNotFoundException("The game status is finished, you can't play this game");
+        }
+
+        if(privateCode == null){
+            throw new InvalidDataException("the code maker was not created! Create a codebreaker first!");
+        }
+
+        if(codePegs.size()!=privateCode.size()){
+            throw new InvalidDataException("The given codebreaker have an invalid size, must be"+privateCode.size());
+        }
+    }
+
+    private void gameWin() {
+        this.finished = Boolean.TRUE;
+        this.win = Boolean.TRUE;
+    }
+
+    private void gameOver() {
+        this.finished = Boolean.TRUE;
+        this.win = Boolean.FALSE;
+    }
+
+    public Boolean getFinished() {
+        return finished;
+    }
+
+    public Boolean getWin() {
+        return win;
     }
 }

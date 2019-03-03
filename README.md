@@ -1,4 +1,7 @@
 # Mastermind API
+[![Build Status](https://travis-ci.org/eballo/mastermind.svg?branch=master)](https://travis-ci.org/eballo/mastermind)
+[![Coverage Status](https://coveralls.io/repos/github/eballo/mastermind/badge.svg?branch=master)](https://coveralls.io/github/eballo/mastermind?branch=master)
+
 ![mastermind](Mastermind.jpg)
 
 ## Introduction

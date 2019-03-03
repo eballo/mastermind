@@ -27,15 +27,29 @@ class MastermindController {
     }
 
     @RequestMapping(value = "/{gameId}/codemaker/create", method = RequestMethod.GET)
-    @ResponseStatus(HttpStatus.OK)
-    public Game gameCreateCodeMaker(@PathVariable("gameId") String gameId) {
+    @ResponseStatus(HttpStatus.CREATED)
+    public Game gameCreateCodeMakerRandom(@PathVariable("gameId") String gameId) {
         return gameManager.gameCreateCodeMaker(gameId);
     }
+
+
+    @RequestMapping(value = "/{gameId}/codemaker/create", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.CREATED)
+    public Game gameCreateCodeMaker(@PathVariable("gameId") String gameId, @RequestBody List<CodePeg> codePegs) {
+        return gameManager.gameCreateCodeMaker(gameId, codePegs);
+    }
+
 
     @RequestMapping(value = "/{gameId}/codebreaker/play", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
     public Game gamePlay(@PathVariable("gameId") String gameId, @RequestBody List<CodePeg> codePegs) {
         return gameManager.gamePlay(gameId, codePegs);
+    }
+
+    @RequestMapping(value = "/{gameId}/codebreaker/play", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public Game gameEnd(@PathVariable("gameId") String gameId){
+        return gameManager.gameEnd(gameId);
     }
 
     @RequestMapping(value = "/{gameId}/status", method = RequestMethod.GET)

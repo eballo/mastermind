@@ -31,13 +31,19 @@ public class GameManager {
         return game;
     }
 
-    public void gameEnd(String gameId){
-        games.remove(gameId);
+    public Game gameEnd(String gameId){
+        return games.remove(gameId);
     }
 
     public Game gameCreateCodeMaker(String gameId) {
         Game game = games.get(gameId);
         game.generateCode();
+        return game;
+    }
+
+    public Game gameCreateCodeMaker(String gameId, List<CodePeg> codePegs) {
+        Game game = games.get(gameId);
+        game.setPrivateCode(codePegs);
         return game;
     }
 
@@ -52,4 +58,6 @@ public class GameManager {
         serverStatus.setTotalGames(games.size());
         return serverStatus;
     }
+
+
 }

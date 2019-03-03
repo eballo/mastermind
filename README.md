@@ -15,6 +15,7 @@ https://en.wikipedia.org/wiki/Mastermind_(board_game)
 ## Project requirements
 
 We want a Rest API that simulates the role of the Masterminds codemaker, its main features are:
+
 - Create game (given a user request)
 - Return feedback given a code guess
 - Check game historic (optional, actually is a role of the board not the codemaker)
@@ -23,3 +24,208 @@ We want a Rest API that simulates the role of the Masterminds codemaker, its mai
 - The code can be written in any language or framework (but python is preferred)
 - Once finished send us a link to the remote git repository where it’s stored (Github, bitbucket, gitlab etc.)
 - This project should take between 6-8h
+
+## How to Start the project
+Go to the app directory and run the following command
+
+```
+cd mastermind-app
+
+mvn clean install spring-boot:run
+```
+
+## Available end points
+
+```
+http://localhost:8080/swagger-ui.html#/
+```
+![sample](screenshot.png)
+
+## How to play
+To play the mastermind API game:
+
+- Create a game
+	- Some configurations can be done (codelength, duplicates, number of guesses)
+- create a codemaker for this gameId
+	- Create a random using the GET
+	- Create your own one using POST
+- Start playing sending the codebreaker for this gameId
+   - Send a POST with your code Pegs with the same number of pegs as the game configuration.
+
+Sample Game response:
+
+```
+{
+  "id": "a1d829de-3dcb-4302-9434-0257d5e81e2e",
+  "finished": "true",
+  "win": "true",
+  "gameConfiguration": {
+    "guesses": 11,
+    "duplicates": false,
+    "codeLength": 4
+  },
+  "guessNum": 4,
+  "privateCode": [
+    "ORANGE",
+    "YELLOW",
+    "BLUE",
+    "GREEN"
+  ],
+  "history": {
+    "0": {
+      "codePegs": [
+        "BLUE",
+        "BLUE",
+        "BLUE",
+        "BLUE"
+      ],
+      "keyPegs": [
+        "WHITE",
+        "WHITE",
+        "BLACK",
+        "WHITE"
+      ]
+    },
+    "1": {
+      "codePegs": [
+        "BLUE",
+        "BLUE",
+        "BLUE",
+        "YELLOW"
+      ],
+      "keyPegs": [
+        "WHITE",
+        "WHITE",
+        "BLACK",
+        "WHITE"
+      ]
+    },
+    "2": {
+      "codePegs": [
+        "BLUE",
+        "BLUE",
+        "ORANGE",
+        "YELLOW"
+      ],
+      "keyPegs": [
+        "WHITE",
+        "WHITE",
+        "WHITE",
+        "WHITE"
+      ]
+    },
+    "3": {
+      "codePegs": [
+        "ORANGE",
+        "YELLOW",
+        "BLUE",
+        "GREEN"
+      ],
+      "keyPegs": [
+        "BLACK",
+        "BLACK",
+        "BLACK",
+        "BLACK"
+      ]
+    }
+  }
+}
+```
+
+Server sample response
+
+```
+{
+  "activeGames": 1,
+  "totalGames": 2,
+  "finishedGames": 1,
+  "gameList": [
+    {
+      "id": "67232e9f-f0da-49f8-a806-49232bfd54e0",
+      "finished": "false",
+      "gameConfiguration": {
+        "guesses": 11,
+        "duplicates": false,
+        "codeLength": 4
+      },
+      "guessNum": 0,
+      "history": {}
+    },
+    {
+      "id": "a1d829de-3dcb-4302-9434-0257d5e81e2e",
+      "finished": "true",
+      "win": "true",
+      "gameConfiguration": {
+        "guesses": 11,
+        "duplicates": false,
+        "codeLength": 4
+      },
+      "guessNum": 4,
+      "privateCode": [
+        "ORANGE",
+        "YELLOW",
+        "BLUE",
+        "GREEN"
+      ],
+      "history": {
+        "0": {
+          "codePegs": [
+            "BLUE",
+            "BLUE",
+            "BLUE",
+            "BLUE"
+          ],
+          "keyPegs": [
+            "WHITE",
+            "WHITE",
+            "BLACK",
+            "WHITE"
+          ]
+        },
+        "1": {
+          "codePegs": [
+            "BLUE",
+            "BLUE",
+            "BLUE",
+            "YELLOW"
+          ],
+          "keyPegs": [
+            "WHITE",
+            "WHITE",
+            "BLACK",
+            "WHITE"
+          ]
+        },
+        "2": {
+          "codePegs": [
+            "BLUE",
+            "BLUE",
+            "ORANGE",
+            "YELLOW"
+          ],
+          "keyPegs": [
+            "WHITE",
+            "WHITE",
+            "WHITE",
+            "WHITE"
+          ]
+        },
+        "3": {
+          "codePegs": [
+            "ORANGE",
+            "YELLOW",
+            "BLUE",
+            "GREEN"
+          ],
+          "keyPegs": [
+            "BLACK",
+            "BLACK",
+            "BLACK",
+            "BLACK"
+          ]
+        }
+      }
+    }
+  ]
+}
+```

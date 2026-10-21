@@ -1,35 +1,22 @@
 package com.bluecodex.java.mastermind.config;
 
+import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.info.Contact;
+import io.swagger.v3.oas.models.info.Info;
+import io.swagger.v3.oas.models.info.License;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import springfox.documentation.builders.PathSelectors;
-import springfox.documentation.builders.RequestHandlerSelectors;
-import springfox.documentation.service.ApiInfo;
-import springfox.documentation.service.Contact;
-import springfox.documentation.service.VendorExtension;
-import springfox.documentation.spi.DocumentationType;
-import springfox.documentation.spring.web.plugins.Docket;
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
-
-import java.util.Collection;
-import java.util.Collections;
 
 @Configuration
-@EnableSwagger2
 public class SwaggerConfig {
     @Bean
-    public Docket api() {
-        return new Docket(DocumentationType.SWAGGER_2)
-                .select()
-                .apis(RequestHandlerSelectors.basePackage("com.bluecodex.java.mastermind.service.rest"))
-                .paths(PathSelectors.any())
-                .build()
-                .apiInfo(apiInfo());
-    }
-
-    private ApiInfo apiInfo() {
-         Contact contact = new Contact("Blue Codex", "www.bluecodex.com", "enric.ballo@bluecodex.com");
-         Collection< VendorExtension > vendorExtensions = Collections.emptyList();
-        return new ApiInfo("Mastermind", "Mastermind API", "1.0.0", "", contact, "GNU license", "", vendorExtensions);
+    public OpenAPI api() {
+        Contact contact = new Contact().name("Blue Codex").url("www.bluecodex.com").email("enric.ballo@bluecodex.com");
+        return new OpenAPI().info(new Info()
+                .title("Mastermind")
+                .description("Mastermind API")
+                .version("1.0.0")
+                .contact(contact)
+                .license(new License().name("GNU license")));
     }
 }

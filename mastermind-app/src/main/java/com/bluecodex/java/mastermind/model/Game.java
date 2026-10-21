@@ -7,8 +7,8 @@ import com.bluecodex.java.mastermind.model.code.KeyPeg;
 import com.bluecodex.java.mastermind.model.config.GameConfig;
 import com.bluecodex.java.mastermind.model.history.GamePlay;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
+import tools.jackson.databind.annotation.JsonSerialize;
+import tools.jackson.databind.ser.std.ToStringSerializer;
 
 import java.util.*;
 

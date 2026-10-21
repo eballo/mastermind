@@ -1,6 +1,5 @@
 # Mastermind API
-[![Build Status](https://travis-ci.org/eballo/mastermind.svg?branch=master)](https://travis-ci.org/eballo/mastermind)
-[![Coverage Status](https://coveralls.io/repos/github/eballo/mastermind/badge.svg?branch=master)](https://coveralls.io/github/eballo/mastermind?branch=master)
+[![CI](https://github.com/eballo/mastermind/actions/workflows/ci.yml/badge.svg)](https://github.com/eballo/mastermind/actions/workflows/ci.yml)
 
 ![mastermind](Mastermind.jpg)
 
@@ -12,7 +11,7 @@ https://en.wikipedia.org/wiki/Mastermind_(board_game)
 In this project we want to to create a Mastermind API to be able to play this game.
 
 ## How to Start the project
-Go to the app directory and run the following command
+Requires Java 17+. Go to the app directory and run the following command
 
 ```
 cd mastermind-app

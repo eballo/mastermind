@@ -19,7 +19,7 @@
         <spring-boot.version>4.1.1</spring-boot.version>
         <!-- Patched versions ahead of the Spring Boot BOM; drop once Boot ships them -->
         <tomcat.version>11.0.27</tomcat.version>
-        <jackson-bom.version>3.2.3</jackson-bom.version>
+        <jackson-bom.version>3.2.4</jackson-bom.version>
         <jackson-2-bom.version>2.22.4</jackson-2-bom.version>
     </properties>
 
